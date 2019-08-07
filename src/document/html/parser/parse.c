@@ -18,6 +18,7 @@
 #include "document/css/parser.h"
 #include "document/html/parser/forms.h"
 #include "document/html/parser/general.h"
+#include "document/html/parser/inline.h"
 #include "document/html/parser/link.h"
 #include "document/html/parser/parse.h"
 #include "document/html/parser/stack.h"
@@ -465,6 +466,7 @@ static struct element_info elements[] = {
  {"I",           html_italic,      NULL,                 0, ET_NESTABLE    },
  {"IFRAME",      html_iframe,      NULL,                 1, ET_NON_PAIRABLE},
  {"IMG",         html_img,         NULL,                 0, ET_NON_PAIRABLE},
+ {"INLINE",      html_inline,      NULL,                 0, ET_NON_PAIRABLE},
  {"INPUT",       html_input,       NULL,                 0, ET_NON_PAIRABLE},
  {"LI",          html_li,          NULL,                 1, ET_LI          },
  {"LINK",        html_link,        NULL,                 1, ET_NON_PAIRABLE},
