@@ -47,7 +47,7 @@ html_inline(struct html_context *html_context, unsigned char *a,
     int ret = pclose(fp);
     if (ret != 0)
     {
-        sprintf(buf, "##%d##", ret);
+        sprintf(buf, "---", ret);
         put_chrs(html_context, buf, strlen(buf));
     }
 }
