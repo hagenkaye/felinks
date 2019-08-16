@@ -14,6 +14,6 @@ SUBDIRS = auth file http test
 
 OBJS-$(CONFIG_DATA)		+= data.o
 
-OBJS = about.o common.o date.o header.o protocol.o proxy.o uri.o user.o
+OBJS = about.o bash.o common.o date.o header.o protocol.o proxy.o uri.o user.o
 
 include $(top_srcdir)/Makefile.lib

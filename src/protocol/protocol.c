@@ -26,6 +26,7 @@
 /* Backends dynamic area: */
 
 #include "protocol/about.h"
+#include "protocol/bash.h"
 #include "protocol/auth/auth.h"
 #include "protocol/bittorrent/bittorrent.h"
 #include "protocol/bittorrent/connection.h"
@@ -58,6 +59,7 @@ struct protocol_backend {
 
 static const struct protocol_backend protocol_backends[] = {
 	{ "about",	   0, about_protocol_handler,		0, 0, 1, 0, 1 },
+	{ "bash",      0, NULL,                         0, 0, 1, 0, 1 },
 	{ "bittorrent",	   0, bittorrent_protocol_handler,	0, 0, 1, 0, 1 },
 	{ "bittorrent-peer",0,bittorrent_peer_protocol_handler, 1, 1, 0, 0, 1 },
 	{ "data",	   0, data_protocol_handler,		0, 0, 1, 0, 1 },
@@ -226,6 +228,10 @@ generic_external_protocol_handler(struct session *ses, struct uri *uri)
 		state = connection_state(S_NO_JAVASCRIPT);
 #endif
 		break;
+
+	case PROTOCOL_BASH:
+		bash_protocol_handler(ses, uri);
+		return;
 
 	case PROTOCOL_UNKNOWN:
 		state = connection_state(S_UNKNOWN_PROTOCOL);
