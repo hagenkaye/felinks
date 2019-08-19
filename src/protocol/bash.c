@@ -13,5 +13,13 @@
 void
 bash_protocol_handler(struct session *ses, struct uri *uri)
 {
-    exec_on_terminal(ses->tab->term, uri->data, "", TERM_EXEC_FG);
+    struct string command;
+
+    if (!init_string(&command))
+        return;
+
+    add_uri_to_string(&command, uri, URI_DATA);
+    decode_uri_string(&command);
+    exec_on_terminal(ses->tab->term, command.source, "", TERM_EXEC_FG);
+    done_string(&command);
 }
